@@ -10,7 +10,7 @@ function addDays( adds ){
 
 /* GET listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('agendar', { title: 'La Brujula Cowork - Agenda' });
 });
 
 /* GET agenda listing. */
@@ -23,24 +23,27 @@ router.get('/data', function(req, res, next) {
 });
 
 /*TODO: Change to post*/
-router.get('/request', function(req, res, next) {
+router.post('/request', function(req, res, next) {
   var agenda = new Agenda();
+  console.log(req.body);
 
-  // set the user's local credentials
-  agenda.title = 'test';
+  // set the agenda's local credentials
+  agenda.title = req.body.txfTitle;
   agenda.allDay = false;
-  agenda.start = addDays(0);
-  agenda.end = addDays(2);
-  agenda.url = 'http://google.cl';
+  agenda.start = new Date(req.body.txfDateStart);
+  agenda.end = new Date(req.body.txfDateEnd);
+  agenda.url = req.body.txfUrl;
+  agenda.status = 1;
 
-  // save the user
+  // save the request
   agenda.save(function(err) {
       if (err){
-          console.log('Error in Saving user: '+err);
+          console.log('Error in Saving request: '+err);
           throw err;
       }
-      console.log('User Registration succesful');
-      res.json(agenda);
+      console.log('Request Registration succesful');
+      console.log(agenda);
+      res.redirect('/');
   });
 });
 module.exports = router;

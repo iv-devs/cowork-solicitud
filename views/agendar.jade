@@ -1,0 +1,44 @@
+extends layout
+black css
+  link(rel='stylesheet', href='/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+block js
+  script(type='text/javascript', src='/moment/min/moment.min.js')
+  script(type='text/javascript', src='/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+  script(src='/javascripts/agendar.js')
+  
+block header
+    include ./includes/header_nav.jade
+    
+block content
+  .container
+    .row
+      .col-xs-12
+        form.form-horizontal(action='/agenda/request', method='POST', style="margin-top: 5em;")
+          fieldset
+            legend Form Name
+            .form-group
+              label.col-md-4.control-label(for='txfTitle') Titulo
+              .col-md-4
+                input#txfTitle.form-control.input-md(name='txfTitle', type='text', placeholder='Titulo', required='')
+            .form-group
+              label.col-md-4.control-label(for='txfUrl') Url
+              .col-md-4
+                input#txfUrl.form-control.input-md(name='txfUrl', type='text', placeholder='Url')
+            .form-group
+              label.col-md-4.control-label(for='txfDateStart') Desde
+              .col-md-4
+                .form-group
+                  #txfDateStart.input-group.date
+                    input.form-control(name='txfDateStart', type='text')
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-calendar
+            .form-group
+              label.col-md-4.control-label(for='txfDateEnd') Desde
+              .col-md-4
+                .form-group
+                  #txfDateEnd.input-group.date
+                    input.form-control(name='txfDateEnd', type='text')
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-calendar
+            .col-xs-12
+              button.btn.btn-primary Solicitar
