@@ -1,0 +1,22 @@
+{
+  "name": "cowork-solicitud",
+  "description": "",
+  "main": "",
+  "authors": [
+    "César Encina Leon <ceel2004@hotmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/iv-devs/cowork-solicitud",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

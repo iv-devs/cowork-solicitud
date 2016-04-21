@@ -1,0 +1,32 @@
+extends layout
+block css
+	link(rel='stylesheet', href='/stylesheets/auth.css')
+block js
+	script(src='/javascripts/auth.js')
+block content
+	div.container
+		div.row.vertical-offset-100
+			div.col-md-6.col-md-offset-3
+				div.panel.panel-default
+					div.panel-heading
+						h1.panel-title Registration Details
+					div.panel-body
+						form(class='form-signin', action='/auth/signup', method='POST')
+							div.form-group
+								input(type='text', name='username', class='form-control', placeholder='Username',required, autofocus)
+							div.form-group
+								input(type='password', name='password', class='form-control nomargin', placeholder='Password', required)
+							div.form-group
+								input(type='email', name='email', class='form-control', placeholder='Email',required)
+							div.form-group
+								input(type='text', name='firstName', class='form-control', placeholder='First Name',required)
+							div.form-group
+								input(type='text', name='lastName', class='form-control', placeholder='Last Name',required)
+							button(class='btn btn-lg btn-primary btn-block', type='submit') Register
+							hr
+							div.form-group.text-center
+								| si ya posees cuenta 
+								a.btn.btn-lg.btn-facebook(href='/auth/login')
+									span Entrar
+								if message
+									div.alert.alert-warning.text-center(role='alert') #{message}

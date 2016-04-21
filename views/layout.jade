@@ -1,0 +1,12 @@
+doctype html
+html(lang='es')
+  head
+    title= title
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+    block css
+  body
+    block header
+    block content
+  script(src='/jquery/dist/jquery.min.js')
+  script(src='/bootstrap/dist/js/bootstrap.min.js')
+  block js
