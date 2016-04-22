@@ -19,6 +19,6 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "fullcalendar": "^2.6.1",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
+    "bootstrap-daterangepicker": "*"
   }
 }

@@ -1,12 +1,11 @@
 $(document).ready(function() {
-       $('#txfDateStart').datetimepicker();
-       $('#txfDateEnd').datetimepicker({
-           useCurrent: false //Important! See issue #1075
-       });
-       $("#txfDateStart").on("dp.change", function (e) {
-           $('#txfDateEnd').data("DateTimePicker").minDate(e.date);
-       });
-       $("#txfDateEnd").on("dp.change", function (e) {
-           $('#txfDateStart').data("DateTimePicker").maxDate(e.date);
-       });
+  $('#txfFechas').daterangepicker({
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "autoApply": true,
+    "minDate": "04/21/2016",
+    locale: {
+      format: 'MM/DD/YYYY h:mm'
+    }
+  });
 });

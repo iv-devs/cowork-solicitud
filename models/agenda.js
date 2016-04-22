@@ -8,5 +8,7 @@ module.exports = mongoose.model('agenda',
     start:Date,
     end	:Date,
     url	:String,
-    status: Number
+    status: Number,
+		details: String,
+		noAttendees: Number
 	});

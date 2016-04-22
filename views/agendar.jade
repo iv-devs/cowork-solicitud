@@ -1,9 +1,9 @@
 extends layout
-black css
-  link(rel='stylesheet', href='/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+block css
+  link(rel='stylesheet', href='/bootstrap-daterangepicker/daterangepicker.css')
 block js
   script(type='text/javascript', src='/moment/min/moment.min.js')
-  script(type='text/javascript', src='/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+  script(type='text/javascript', src='/bootstrap-daterangepicker/daterangepicker.js')
   script(src='/javascripts/agendar.js')
   
 block header
@@ -25,20 +25,20 @@ block content
               .col-md-4
                 input#txfUrl.form-control.input-md(name='txfUrl', type='text', placeholder='Url')
             .form-group
-              label.col-md-4.control-label(for='txfDateStart') Desde
+              label.col-md-4.control-label(for='noAttendees') Asistentes Esperados
+              .col-md-4
+                input#noAttendees.form-control.input-md(name='noAttendees', type='number', min='1', value=1)
+            .form-group
+              label.col-md-4.control-label(for='txfFechas') Fechas
               .col-md-4
                 .form-group
-                  #txfDateStart.input-group.date
-                    input.form-control(name='txfDateStart', type='text')
+                  .input-group.date
+                    input#txfFechas.form-control(name='txfFechas', type='text')
                     span.input-group-addon
                       span.glyphicon.glyphicon-calendar
             .form-group
-              label.col-md-4.control-label(for='txfDateEnd') Desde
+              label.col-md-4.control-label(for='txaDetails') Detalle Solicitud
               .col-md-4
-                .form-group
-                  #txfDateEnd.input-group.date
-                    input.form-control(name='txfDateEnd', type='text')
-                    span.input-group-addon
-                      span.glyphicon.glyphicon-calendar
+                textarea#txaDetails.form-control.input-md(name='txaDetails', type='text', placeholder='Detalle la solicitud')
             .col-xs-12
               button.btn.btn-primary Solicitar
