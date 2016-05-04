@@ -15,6 +15,15 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
                 li
                     a(href='/agenda') Agendar Hora
             ul.nav.navbar-nav.navbar-right
+              if user !== null
+                li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        b Hola #{user.fullname} !
+                        span.caret
+                    ul#login-dp.dropdown-menu
+                        li 
+                          a.btn.btn-primary(href='auth/logout') Cerrar sesión
+              else
                 li
                     p.navbar-text ¿ Ya posees una cuenta ?
                 li.dropdown
