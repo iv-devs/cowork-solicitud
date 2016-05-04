@@ -1,49 +1,67 @@
 var express = require('express');
 var router = express.Router();
 
-var Agenda = require('../models/agenda');
+var Event = require('../models/event');
 var isAuthenticated = require('../middlewares/auth_middleware');
 
-/* GET listing. */
+/* GET create view */
 router.get('/', isAuthenticated, function(req, res, next) {
-  res.render('agendar', { title: 'La Brujula Cowork - Agenda' });
+  var user = ( req.user ) ? req.user : null;
+  if ( user !== null)
+    user.fullname = user.firstName + ' ' + user.lastName;
+
+  res.render('agendar', { title: 'La Brujula Cowork - Agenda', user: user });
 });
 
 /* GET agenda listing. */
 router.get('/data', function(req, res, next) {
-  Agenda.find({
-    status: 2
+  var isAdminLogged = ( req.user && req.user.rol == 'admin' ) ? true : false;
+  var findStatus = ( isAdminLogged ) ? [1,2] : 2;
+
+  Event.find({
+    status: { "$in" : findStatus}
   }, function(err, data) {
-    if (err) res.send(err);
+    if (err){
+      console.log(err);
+      res.send(err);
+    }
 
     res.json(data);
   });
 });
 
-/*TODO: Change to post*/
 router.post('/request', isAuthenticated, function(req, res, next) {
-  var agenda = new Agenda();
+  var newEvent = new Event();
   console.log(req.body);
+  var fechas;
 
-  // set the agenda's local credentials
-  var fechas = req.body.txfFechas.split(' - ');
-  agenda.title = req.body.txfTitle;
-  agenda.allDay = false;
-  agenda.start = new Date(fechas[0]);
-  agenda.end = new Date(fechas[1]);
-  agenda.url = req.body.txfUrl;
-  agenda.status = 1;
-  agenda.details = req.body.txaDetails;
-  agenda.noAttendees = req.body.noAttendees;
+  if ( req.body.txfFechas )
+    fechas = req.body.txfFechas.split(' - ');
+  else if (req.body.hdnStart && req.body.hdnEnd) {
+    fechas = [];
+    fechas[0] = req.body.hdnStart;
+    fechas[1] = req.body.hdnEnd;
+  }else {
+    res.json(req.body);
+  }
+
+  newEvent.title = req.body.txfTitle;
+  newEvent.allDay = false;
+  newEvent.start = new Date(fechas[0]);
+  newEvent.end = new Date(fechas[1]);
+  newEvent.url = req.body.txfUrl;
+  newEvent.status = 1;
+  newEvent.details = req.body.txaDetails;
+  newEvent.noAttendees = req.body.noAttendees;
 
   // save the request
-  agenda.save(function(err) {
+  newEvent.save(function(err) {
       if (err){
           console.log('Error in Saving request: '+err);
           throw err;
       }
       console.log('Request Registration succesful');
-      console.log(agenda);
+      console.log(newEvent);
       res.redirect('/');
   });
 });

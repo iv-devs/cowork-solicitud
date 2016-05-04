@@ -17,6 +17,7 @@
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
     "mongoose": "^4.4.12",
+    "mongoose-slug-generator": "^1.0.4",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
