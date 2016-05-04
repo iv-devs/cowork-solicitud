@@ -15,15 +15,15 @@ block content
       .col-xs-12
         form.form-horizontal(action='/agenda/request', method='POST', style="margin-top: 5em;")
           fieldset
-            legend Form Name
+            legend Formulario de Solicitud
             .form-group
               label.col-md-4.control-label(for='txfTitle') Titulo
               .col-md-4
                 input#txfTitle.form-control.input-md(name='txfTitle', type='text', placeholder='Titulo', required='')
             .form-group
-              label.col-md-4.control-label(for='txfUrl') Url
+              label.col-md-4.control-label(for='txfUrl') Url del evento
               .col-md-4
-                input#txfUrl.form-control.input-md(name='txfUrl', type='text', placeholder='Url')
+                input#txfUrl.form-control.input-md(name='txfUrl', type='text', placeholder='welcu... meetup')
             .form-group
               label.col-md-4.control-label(for='noAttendees') Asistentes Esperados
               .col-md-4
@@ -41,4 +41,4 @@ block content
               .col-md-4
                 textarea#txaDetails.form-control.input-md(name='txaDetails', type='text', placeholder='Detalle la solicitud')
             .col-xs-12
-              button.btn.btn-primary Solicitar
+              button.btn.btn-primary.center-block Enviar Solicitud
