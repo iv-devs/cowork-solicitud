@@ -1,14 +1,16 @@
 doctype html
 html(lang='es')
   head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap-theme.css')
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/base.css')
     block css
   body
     block header
     block content
+    include ./includes/footer.jade
   script(src='/jquery/dist/jquery.min.js')
   script(src='/moment/min/moment.min.js')
   script(src='/bootstrap/dist/js/bootstrap.min.js')

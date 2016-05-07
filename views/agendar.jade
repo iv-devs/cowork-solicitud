@@ -13,32 +13,18 @@ block content
   .container
     .row
       .col-xs-12
-        form.form-horizontal(action='/agenda/request', method='POST', style="margin-top: 5em;")
-          fieldset
-            legend Formulario de Solicitud
-            .form-group
-              label.col-md-4.control-label(for='txfTitle') Titulo
-              .col-md-4
-                input#txfTitle.form-control.input-md(name='txfTitle', type='text', placeholder='Titulo', required='')
-            .form-group
-              label.col-md-4.control-label(for='txfUrl') Url del evento
-              .col-md-4
-                input#txfUrl.form-control.input-md(name='txfUrl', type='text', placeholder='welcu... meetup')
-            .form-group
-              label.col-md-4.control-label(for='noAttendees') Asistentes Esperados
-              .col-md-4
-                input#noAttendees.form-control.input-md(name='noAttendees', type='number', min='1', value=1)
-            .form-group
-              label.col-md-4.control-label(for='txfFechas') Fechas
-              .col-md-4
-                .form-group
-                  .input-group.date
-                    input#txfFechas.form-control(name='txfFechas', type='text')
-                    span.input-group-addon
-                      span.glyphicon.glyphicon-calendar
-            .form-group
-              label.col-md-4.control-label(for='txaDetails') Detalle Solicitud
-              .col-md-4
-                textarea#txaDetails.form-control.input-md(name='txaDetails', type='text', placeholder='Detalle la solicitud')
-            .col-xs-12
-              button.btn.btn-primary.center-block Enviar Solicitud
+        p.text-center= event.title
+      .col-xs-12
+        p.text-center= event.details
+      .col-xs-12
+        p.text-center= event.url
+      .col-xs-12
+        p.text-center= event.noAttendees + ' asistentes'         
+      .col-xs-12
+        p.text-center= moment(event.start).format('DD-MM-YYYY HH:mm') + ' - ' + moment(event.end).format('DD-MM-YYYY HH:mm')
+      if isAdminLogged
+        .col-xs-12.center-block.text-center
+          .btn-group.inline
+            button.btn.btn-success Aceptar
+            button.btn.btn-danger Rechazar
+        

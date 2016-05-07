@@ -26,7 +26,7 @@ $(document).ready(function() {
 				}
 			},
 			eventClick: function( event, jsEvent, view ) {
-				console.log(event.slug);return false;
+				window.location.href = "agenda/" + event.slug;
 			},
 			select: function( start, end, jsEvent, view ){
 				if( view.name == 'agendaDay' ){

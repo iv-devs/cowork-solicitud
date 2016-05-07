@@ -10,7 +10,7 @@ router.get('/', isAuthenticated, function(req, res, next) {
   if ( user !== null)
     user.fullname = user.firstName + ' ' + user.lastName;
 
-  res.render('agendar', { title: 'La Brujula Cowork - Agenda', user: user });
+  res.render('solicitar', { title: 'La Brujula Cowork - Agenda', user: user });
 });
 
 /* GET agenda listing. */
@@ -65,4 +65,23 @@ router.post('/request', isAuthenticated, function(req, res, next) {
       res.redirect('/');
   });
 });
+
+router.get('/:slug', function(req, res, next) {
+  var isAdminLogged = ( req.user && req.user.rol == 'admin' ) ? true : false;
+  console.log(isAdminLogged);
+  var user = ( req.user ) ? req.user : null;
+  if ( user !== null)
+    user.fullname = user.firstName + ' ' + user.lastName;
+
+  Event.findOne({slug: req.params.slug}, function(err, data){
+    if (err){
+      console.log( err );
+      res.send( err );
+    }
+    var eventData = data;
+    res.render('agendar', { title: 'La Brujula Cowork - Agenda', user: user, event: eventData, isAdminLogged: isAdminLogged });
+  });
+
+});
+
 module.exports = router;
