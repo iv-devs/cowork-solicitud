@@ -13,6 +13,8 @@ block content
   .container
     .row
       .col-xs-12
+        p.text-center= event.status
+      .col-xs-12
         p.text-center= event.title
       .col-xs-12
         p.text-center= event.details
@@ -22,9 +24,11 @@ block content
         p.text-center= event.noAttendees + ' asistentes'         
       .col-xs-12
         p.text-center= moment(event.start).format('DD-MM-YYYY HH:mm') + ' - ' + moment(event.end).format('DD-MM-YYYY HH:mm')
-      if isAdminLogged
-        .col-xs-12.center-block.text-center
-          .btn-group.inline
-            button.btn.btn-success Aceptar
-            button.btn.btn-danger Rechazar
-        
+      if (isAdminLogged && user != null && event.status == "pending")
+        form(action="/agenda/finish-request",method="POST")  
+          .col-xs-12.center-block.text-center
+            .btn-group.inline
+              button.btn.btn-success(name="action", value="accepted") Aceptar
+              button.btn.btn-danger(name="action", value="rejected") Rechazar
+          .col-xs-12.center-block.text-center
+            textarea.form-control(name='comment')

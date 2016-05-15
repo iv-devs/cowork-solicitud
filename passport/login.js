@@ -26,6 +26,8 @@ module.exports = function(passport){
                     }
                     // User and password both match, return user from done method
                     // which will be treated like success
+									  if ( user !== null)
+									    user.fullname = user.firstName + ' ' + user.lastName;
                     return done(null, user);
                 }
             );

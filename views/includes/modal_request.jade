@@ -1,0 +1,30 @@
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4#myModalLabel.modal-title Solicitar Cowork
+      .modal-body
+        if user !== null
+          form(action='/agenda/request',method='POST')
+            .form-group
+              label.control-label(for='event-title') Titulo
+              input#txfTitle.form-control(name='txfTitle', type='text')
+            .form-group
+              label.control-label(for='event-detail') Detalle evento
+              textarea#txaDetails.form-control(name='txaDetails')
+            .form-group
+              label.control-label(for='event-attendees') Asistentes esperados
+              input#noAttendees.form-control(name='noAttendees', type='number')
+            input#hdnStart.form-control(name='hdnStart', type='hidden')
+            input#hdnEnd.form-control(name='hdnEnd', type='hidden')
+            button.btn.btn-primary(type='submit') Save changes
+        else
+          p.text-center Necesitas estar registrado para poder solicitar una Hora
+          p.text-center
+            a(href="/auth/signup") Ir al registro
+          p.text-center
+            a(href="/auth/login") Ir a Inicio de sesión
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Close
