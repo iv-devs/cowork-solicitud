@@ -1,7 +1,7 @@
 var express = require('express');
-var path = require('path');
+var path    = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var logger  = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -37,11 +37,12 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 // Configuring Passport
 var passport = require('passport');
 var expressSession = require('express-session');
-// TODO - Why Do we need this key ?
+
 app.use(expressSession({
     secret: 'mySecretKey',
     resave: true,
-    saveUninitialized: true}));
+    saveUninitialized: true})
+  );
 app.use(passport.initialize());
 app.use(passport.session());
 
