@@ -28,7 +28,7 @@ var sendEmail = function(type, event){
     case 'request':
         tpl_file     = 'request_sended.html';
         subject = 'Nueva solicitud de espacio';
-        data = {ACTIVIDAD: event.title, FECHA: event.start};
+        data = {ACTIVIDAD: event.title, FECHA: event.start.toLocaleDateString('en-GB')};
       break;
     case 'request_user':
         tpl_file     = 'request_sended_user.html';
@@ -41,7 +41,7 @@ var sendEmail = function(type, event){
   }
 
   data.BASE_URL = host;
-  
+
   tpl.build(tpl_file, data, function (err, body) {
     if (err){ console.log('Error : '+err); throw err; }
 
