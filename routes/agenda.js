@@ -7,12 +7,12 @@ var Auth  = require('../middlewares/auth_middleware');
 var tpl   = require('../helpers/tpl_helper').Tpl;
 var mail  = require('../helpers/mail_helper').Mail;
 
+var host = '';
 var sendEmail = function(type, event){
 
   var to      = 'contacto@ivdevs.com'; //['karina.salas@codesser.cl','valentina.cortes@codesser.cl'] ,
   var from    = event.userRequest.email;
   var fromName= event.userRequest.name;
-
 
   var subject = 'Actualización de Solicitud Cowork - La Brújula',
       tpl_file= '',
@@ -40,6 +40,8 @@ var sendEmail = function(type, event){
       break;
   }
 
+  data.BASE_URL = host;
+  
   tpl.build(tpl_file, data, function (err, body) {
     if (err){ console.log('Error : '+err); throw err; }
 
@@ -51,16 +53,8 @@ var sendEmail = function(type, event){
 };
 
 router.get('/test', function(req, res, next){
-  var data = {
-    title:' The Test final',
-    start: new Date(),
-    userRequest : {
-      name: 'juanito',
-      email: 'contacto@ivdevs.com'
-    }
-  };
-
-  sendEmail('request', data);
+  console.log(req.headers);
+  res.json(req.headers);
 });
 /* GET create view */
 router.get('/', Auth.isAuthenticated, function(req, res, next) {
@@ -92,6 +86,7 @@ router.get('/data', function(req, res, next) {
 
 /* POST create request to cowork. */
 router.post('/request', Auth.isAuthenticated, function(req, res, next) {
+  host = req.headers.host;
   var user = ( req.user ) ? req.user : null;
   var newEvent = new Event();
 

@@ -8,7 +8,7 @@ Mail.prototype.send = function (fromName, from, to, subject, body, callback ) {
 
   email.to        = to        || mailing.default_mail;
   email.from      = from      || mailing.default_mail;
-  email.fromName  = fromName  || mailing.default_name;
+  email.fromname  = fromName  || mailing.default_name;
   email.subject   = subject;
   email.html      = body;
 
