@@ -9,17 +9,17 @@ block content
 			div.col-md-6.col-md-offset-3
 				div.panel.panel-default
 					div.panel-heading
-						h1.panel-title Login
+						h1.panel-title Ingresar
 					div.panel-body
 							form(class='form-signin', action='/auth/login', method='POST', role='form')
 								fieldset
 									div.form-group
-										input(type='text', name='username' class='form-control', placeholder='username',required, autofocus)
+										input(type='text', name='username' class='form-control', placeholder='usuario',required, autofocus)
 									div.form-group
-										input(type='password', name='password' class='form-control', placeholder='Password', required)
-									button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+										input(type='password', name='password' class='form-control', placeholder='Clave', required)
+									button(class='btn btn-lg btn-primary btn-block', type='submit') Ingresar
 									span.clearfix
-							a(href='/auth/signup', class='text-center new-account') Create an account
+							a(href='/auth/signup', class='text-center new-account') Crear Cuenta
 							hr
 							if message
 								div.alert.alert-warning.text-center(role='alert') #{message}
