@@ -1,9 +1,11 @@
 body{
     
-	background-color: #444;
-    background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
+	background-color: #fff;
+    background-image: url("/images/brujula_blur.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 
 .vertical-offset-100{
-    padding-top:100px;
+    padding-top:50px;
 }
